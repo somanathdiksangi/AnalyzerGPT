@@ -17,5 +17,5 @@ def get_data_analyzer_agent(model_clind):
         system_message=DATA_ANALYZER_PROMPT
     )
     
-    return data_analyzer_agent
+    return data_analyzer_agent()
 
