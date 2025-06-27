@@ -9,7 +9,7 @@ from agents.data_analyzer_agent import getDataAnalyzerAgent
 from config.constants import DOCKER_WORK_DIR
 from team.analyzer_gpt_team import getDataAnalyzerTeam
 
-st.title('Analyzer GPT - Data analyzer')
+st.title("📊 Analyzer GPT - Data Analyzer 🤖")
 
 if 'messages' not in st.session_state:
     st.session_state['messages'] = []

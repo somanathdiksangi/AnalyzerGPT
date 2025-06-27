@@ -1,0 +1,27 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+try:
+    df = pd.read_csv('data.csv')
+    n = df['N'].mean()
+    p = df['P'].mean()
+    k = df['K'].mean()
+
+    labels = ['N', 'P', 'K']
+    ratios = [n, p, k]
+
+    plt.figure(figsize=(8, 6))
+    plt.bar(labels, ratios, color=['blue', 'green', 'red'])
+    plt.title('NPK Ratio')
+    plt.xlabel('Nutrient')
+    plt.ylabel('Average Ratio')
+    plt.savefig('output.png')
+    print("Graph saved as output.png")
+
+except FileNotFoundError:
+    print("Error: data.csv not found.")
+except KeyError as e:
+    print(f"Error: Column {e} not found in data.csv")
+except Exception as e:
+    print(f"An unexpected error occurred: {e}")
+

@@ -1,4 +1,4 @@
-MODEL = 'gemini-1.5-flash-8b'
+MODEL = 'gemini-1.5-flash'
 TEXT_MENTION_TERMINATION = 'STOP'
 DOCKER_WORK_DIR = 'temp'
 DOCKER_TIMEOUT=120
