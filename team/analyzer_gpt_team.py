@@ -1,17 +1,22 @@
-from autogen_agentchat.teams import RoundRobinGroupChat
-from agent.code_executor import get_code_executor_agent
-from agent.data_analyzer_agent import get_data_analyzer_agent
+from agents.data_analyzer_agent import getDataAnalyzerAgent
+from agents.code_executor_agent import getCodeExecutorAgent
+from autogen_agentchat.teams import RoundRobinGroupChat,SelectorGroupChat
 from autogen_agentchat.conditions import TextMentionTermination
+from config.constants import TEXT_MENTION_TERMINATION
 
 
-def get_analyzer_team(docker,model_clind):
-    code_executor_agent=get_code_executor_agent(docker)
-    data_analyzer_agent=get_data_analyzer_agent(model_clind)
-    condition=TextMentionTermination("STOP")
+def getDataAnalyzerTeam(docker,model_client):
+    code_executor_agent = getCodeExecutorAgent(docker)
+    data_analyzer_agent = getDataAnalyzerAgent(model_client)
 
-    team=RoundRobinGroupChat(
+    team= RoundRobinGroupChat(
         participants=[data_analyzer_agent,code_executor_agent],
-        termination_condition=condition,
-        max_turns=10
+        max_turns=10,
+        termination_condition=TextMentionTermination(TEXT_MENTION_TERMINATION)
     )
+        
+        
+        
+
     return team
+

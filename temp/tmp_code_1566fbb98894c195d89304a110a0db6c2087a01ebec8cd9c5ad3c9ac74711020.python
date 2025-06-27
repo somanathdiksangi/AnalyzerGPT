@@ -1,0 +1,41 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Your Python code here
+try:
+    # Load the dataset
+    df = pd.read_csv("data.csv")
+
+    # Check if the dataframe is empty
+    if df.empty:
+        print("Error: The input CSV file is empty.")
+        exit()
+
+
+    # Count the number of survivors and deceased
+    survivors = df['Survived'].value_counts()[1]
+    deceased = df['Survived'].value_counts()[0]
+
+    # Create a bar plot
+    labels = 'Survived', 'Died'
+    sizes = [survivors, deceased]
+    colors = ['lightgreen', 'lightcoral']
+    explode = (0.1, 0)  # Explode the 1st slice (Survived)
+
+    plt.pie(sizes, explode=explode, labels=labels, colors=colors,
+            autopct='%1.1f%%', shadow=True, startangle=90)
+    plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+
+    plt.title('Titanic Survival Rate')
+    plt.savefig("output.png")
+    plt.show()
+    print("Graph saved as output.png")
+
+
+except FileNotFoundError:
+    print("Error: data.csv not found in the current directory.")
+except KeyError as e:
+    print(f"Error: Column '{e.args[0]}' not found in the CSV file.")
+except Exception as e:
+    print(f"An unexpected error occurred: {e}")
+

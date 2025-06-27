@@ -2,7 +2,7 @@ from autogen_agentchat.agents import CodeExecutorAgent
 
 
 
-def get_code_executor_agent(docker_executor):
+def getCodeExecutorAgent(docker_executor):
     """
     Returns an instance of the CodeExecutorAgent configured to execute code in a Docker container.
     
